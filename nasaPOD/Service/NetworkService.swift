@@ -8,6 +8,17 @@
 
 import UIKit
 
-class NetworkService: NSObject {
+typealias ImageResult = (UIImage?, ErrorType) -> Void
+typealias NetworkResult = (AnyObject?, ErrorType) -> Void
 
+class NetworkService: NSObject {
+    var session: NSURLSession?
+
+    func getURL(url: NSURL, completion: NetworkResult) {
+
+    }
+
+    func getImage(url: NSURL, completion: ImageResult) {
+
+    }
 }
