@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="euZ-sQ-RZq">
-                                <rect key="frame" x="20" y="55" width="560" height="418"/>
+                                <rect key="frame" x="20" y="55" width="560" height="265"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="SsB-fi-6Lq">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -44,14 +44,26 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="P3t-u0-Nwo">
-                                <rect key="frame" x="20" y="472" width="560" height="128"/>
+                                <rect key="frame" x="20" y="320" width="560" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="vvW-ta-i1f">
+                                <rect key="frame" x="20" y="447" width="560" height="153"/>
+                                <date key="date" timeIntervalSinceReferenceDate="485631702.36511302">
+                                    <!--2016-05-22 17:41:42 +0000-->
+                                </date>
+                            </datePicker>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="collectionView" destination="euZ-sQ-RZq" id="c7u-E9-Ptb"/>
+                        <outlet property="datePicker" destination="vvW-ta-i1f" id="tl4-S6-rej"/>
+                        <outlet property="textView" destination="P3t-u0-Nwo" id="0XD-Xb-UWi"/>
+                        <outlet property="titleLabel" destination="n9v-6q-oLD" id="YjY-r6-4PA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
