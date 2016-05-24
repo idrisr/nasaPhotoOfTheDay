@@ -16,11 +16,22 @@ extension NSDate {
     }
 }
 
+enum MediaType: String {
+    case image = "image"
+    case video = "video"
+}
+
+enum DefaultImages: String {
+    case broken = "broken"
+    case downloading = "downloading"
+}
+
+
 class Photo {
     var explanation: String?
     var date: NSDate?
     var hdurl: String?
-    var media_type: String?
+    var media_type: MediaType?
     var service_version: String?
     var title: String?
     var url: String?
@@ -42,6 +53,10 @@ class Photo {
         if let hdurl = dict["hdurl"] as? String{
             self.hdurl = hdurl
         }
+
+        if let media_type = dict["media_type"] as? String{
+            self.media_type = MediaType(rawValue: media_type)
+       }
     }
 }
 
@@ -53,8 +68,8 @@ extension Photo {
 
         // FIXME: get start date from plist
         startDate.year = 2016
-        startDate.month = 4
-        startDate.day = 20
+        startDate.month = 1
+        startDate.day = 1
         let calendar = NSCalendar.currentCalendar()
         let startDateNSDate = calendar.dateFromComponents(startDate)!
 
@@ -64,10 +79,12 @@ extension Photo {
 
         var photos = [Photo]()
 
-        while nd.timeIntervalSince1970 <= NSDate().timeIntervalSince1970 {
-            nd = calendar.dateByAddingComponents(offsetComponents, toDate: nd, options: .MatchStrictly)!;
+        while nd.timeIntervalSince1970 < NSDate().timeIntervalSince1970 {
             photos.append(Photo(date: nd))
+            nd = calendar.dateByAddingComponents(offsetComponents, toDate: nd, options: .MatchStrictly)!;
         }
+
+        photos = photos.reverse()
 
         completion(photos, nil)
     }

@@ -34,51 +34,65 @@ class PhotoCollectionViewCell: UICollectionViewCell {
         }
     }
 
-
     var photo: Photo? {
-        // when cell appears, make its initial api call
-        // after that make the photo call
-        // if the cell disappears then
-
         didSet {
+            // cancel existing download task for cell because it just got reused
             imageTask?.cancel()
+
             guard let date = photo?.date else {
-                self.imageView.image = UIImage(named: "Broken")
+                self.imageView.image = UIImage(named: DefaultImages.broken.rawValue)
                 return
             }
 
-            guard let photoUrl = photo?.url else {
+            self.titleLabel.text = self.photo!.date?.toString()
+            self.titleLabel.textColor = UIColor.whiteColor()
+
+            // dont have the url yet. make the API call
+            guard let _ = photo?.url else {
                 let url = NasaAPIURL(date: date.toString()).url()
 
                 NetworkClient.sharedInstance.getURL(url, completion: { [weak self] (results, error) in
                     if let dict = results as! NSDictionary? {
                         self!.photo?.updateWithDict(dict)
-                        self?.titleLabel.text = self!.photo!.url
-                        print(self?.photo?.url)
+
+                        let imageURL = NSURL(string: self!.photo!.url!)!
+                        self?.imageTask = self?.getImage(imageURL)
                     }
                 })
                 return
             }
 
+            // dont have the image yet. download the image
             guard let cellImage = photo?.image else {
-                let imageUrl = NSURL(string: photoUrl)
-
-                imageTask = NetworkClient.sharedInstance.getImage(imageUrl!, completion: { [weak self] (image, error) in
-                    guard error == nil else {
-                        self?.imageView.image = UIImage(named: "Broken")
-                        return
-                    }
-                    self?.photo?.image = image
-                    self?.imageView.image = image
-                })
+                switch photo!.media_type! {
+                    case .image:
+                        imageTask = self.getImage(NSURL(string: self.photo!.url!)!)
+                    case .video:
+                        imageView.image = UIImage(named: DefaultImages.broken.rawValue)
+                }
                 return
             }
+
             imageView.image = cellImage
         }
     }
-    
+
+    private func getImage(imageURL: NSURL) -> NSURLSessionDownloadTask {
+        return NetworkClient.sharedInstance.getImage(imageURL, completion: { [weak self] (image, error) in
+            guard error == nil else {
+                self?.imageView.image = UIImage(named: DefaultImages.broken.rawValue)
+                return
+            }
+
+            self?.photo?.image = image
+            self?.imageView.image = image
+        })
+    }
+
     override func prepareForReuse() {
         super.prepareForReuse()
         photo = nil
+        imageView.image = nil
+        titleLabel.text = ""
     }
 }

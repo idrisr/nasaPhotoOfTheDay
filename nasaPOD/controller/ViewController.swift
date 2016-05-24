@@ -42,9 +42,6 @@ extension ViewController: UICollectionViewDataSource {
 
         let photo = photos![indexPath.row]
         cell.photo = photo
-
-        cell.titleLabel.text = photo.date!.toString()
-        cell.titleLabel.textColor = UIColor.whiteColor()
         return cell
     }
 }
@@ -52,8 +49,8 @@ extension ViewController: UICollectionViewDataSource {
 extension ViewController: UICollectionViewDelegateFlowLayout {
     // FIXME: make collection view paging center cell properly
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        let width = collectionView.frame.size.width * 0.3
-        let height = collectionView.frame.size.height * 0.3
+        let width = collectionView.frame.size.width * 0.9
+        let height = collectionView.frame.size.height * 0.9
         return CGSizeMake(width, height)
     }
 }

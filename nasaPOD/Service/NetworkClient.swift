@@ -34,6 +34,10 @@ class NetworkClient: NSObject {
         let request = NSURLRequest(URL: url)
         let task = urlSession.dataTaskWithRequest(request) { [unowned self] (data, response, error) in
             guard let data = data else {
+                if let httpResponse = response as? NSHTTPURLResponse {
+                    print(httpResponse.statusCode)
+                }
+
                 NSOperationQueue.mainQueue().addOperationWithBlock {
                     completion(nil, error)
                 }
@@ -64,7 +68,6 @@ class NetworkClient: NSObject {
     }
 
     func getImage(url: NSURL, completion: ImageResult) -> NSURLSessionDownloadTask {
-        print("getting image: \(url)")
         let request = NSURLRequest(URL: url)
         let task = urlSession.downloadTaskWithRequest(request) { (fileUrl, response, error) in
             guard let fileUrl = fileUrl else {
