@@ -39,11 +39,12 @@ extension ViewController: UICollectionViewDataSource {
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let reuseID = "photoCell"
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseID, forIndexPath: indexPath) as! PhotoCollectionViewCell
-        print("\(indexPath.row)")
-        cell.titleLabel.text = "\(indexPath.row)"
+
+        let photo = photos![indexPath.row]
+        cell.photo = photo
+
+        cell.titleLabel.text = photo.date!.toString()
         cell.titleLabel.textColor = UIColor.whiteColor()
-        cell.layer.borderColor = UIColor.whiteColor().CGColor
-        cell.layer.borderWidth = 2.0
         return cell
     }
 }
@@ -51,7 +52,9 @@ extension ViewController: UICollectionViewDataSource {
 extension ViewController: UICollectionViewDelegateFlowLayout {
     // FIXME: make collection view paging center cell properly
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return collectionView.frame.size
+        let width = collectionView.frame.size.width * 0.3
+        let height = collectionView.frame.size.height * 0.3
+        return CGSizeMake(width, height)
     }
 }
 

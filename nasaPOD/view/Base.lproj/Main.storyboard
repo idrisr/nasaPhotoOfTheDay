@@ -45,7 +45,7 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="E1h-eQ-vtR">
                                                     <rect key="frame" x="0.0" y="0.0" width="403" height="264"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hUU-qV-F8q">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hUU-qV-F8q">
                                                     <rect key="frame" x="180" y="16" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -59,7 +59,20 @@
                                             <constraint firstAttribute="trailing" secondItem="E1h-eQ-vtR" secondAttribute="trailing" id="A8J-tx-uss"/>
                                             <constraint firstItem="E1h-eQ-vtR" firstAttribute="leading" secondItem="Dkh-Yh-0Qj" secondAttribute="leading" id="FaD-Gx-hhG"/>
                                             <constraint firstItem="E1h-eQ-vtR" firstAttribute="top" secondItem="Dkh-Yh-0Qj" secondAttribute="top" id="oq4-z9-ILf"/>
+                                            <constraint firstItem="hUU-qV-F8q" firstAttribute="centerX" secondItem="Dkh-Yh-0Qj" secondAttribute="centerX" id="tSk-uS-Wsp"/>
+                                            <constraint firstItem="E1h-eQ-vtR" firstAttribute="top" secondItem="hUU-qV-F8q" secondAttribute="bottom" constant="-37" id="u7P-X0-T4n"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="29"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="7"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <outlet property="imageView" destination="E1h-eQ-vtR" id="aN8-ps-uoT"/>
                                             <outlet property="titleLabel" destination="hUU-qV-F8q" id="fpR-NS-kGO"/>

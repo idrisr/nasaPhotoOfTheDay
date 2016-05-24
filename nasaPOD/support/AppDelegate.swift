@@ -16,7 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let model = "nasaPod"
     let db = "nasaPod"
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         return true
     }
