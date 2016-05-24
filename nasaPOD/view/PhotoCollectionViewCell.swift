@@ -51,29 +51,32 @@ class PhotoCollectionViewCell: UICollectionViewCell {
                 let url = NasaAPIURL(date: date.toString()).url()
 
                 NetworkClient.sharedInstance.getURL(url, completion: { [weak self] (results, error) in
-                    if let dict = results as! [String: String]? {
+                    if let dict = results as! NSDictionary? {
                         self!.photo?.updateWithDict(dict)
                         self?.titleLabel.text = self!.photo!.url
                         print(self?.photo?.url)
                     }
-                    })
-
-
-
+                })
                 return
             }
 
-            let url = NSURL(string: photoUrl)
-            imageTask = NetworkClient.sharedInstance.getImage(url!) { [weak self] (image, error) in
-                guard error == nil else {
-                    self?.imageView.image = UIImage(named: "Broken")
-                    return
-                }
-                self?.imageView.image = image
+            guard let cellImage = photo?.image else {
+                let imageUrl = NSURL(string: photoUrl)
+
+                imageTask = NetworkClient.sharedInstance.getImage(imageUrl!, completion: { [weak self] (image, error) in
+                    guard error == nil else {
+                        self?.imageView.image = UIImage(named: "Broken")
+                        return
+                    }
+                    self?.photo?.image = image
+                    self?.imageView.image = image
+                })
+                return
             }
+            imageView.image = cellImage
         }
     }
-
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         photo = nil

@@ -6,7 +6,7 @@
 //  Copyright © 2016 id. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 extension NSDate {
     func toString() -> String {
@@ -24,22 +24,22 @@ class Photo {
     var service_version: String?
     var title: String?
     var url: String?
-    var image: NSData?
+    var image: UIImage?
 
     init(date: NSDate) {
         self.date = date
     }
 
-    func updateWithDict(dict: [String: String]) {
-        if let explanation = dict["explanation"] {
+    func updateWithDict(dict: NSDictionary) {
+        if let explanation = dict["explanation"] as? String {
             self.explanation = explanation
         }
 
-        if let url = dict["url"] {
+        if let url = dict["url"] as? String {
             self.url = url
         }
 
-        if let hdurl = dict["hdurl"] {
+        if let hdurl = dict["hdurl"] as? String{
             self.hdurl = hdurl
         }
     }
