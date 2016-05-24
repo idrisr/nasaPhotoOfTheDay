@@ -10,25 +10,30 @@ import UIKit
 
 class ViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var datePicker: UIDatePicker!
+
+    var photos: [Photo]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
-    }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        Photo.allPhotos() { [weak self] (photos, error) in
+            guard error == nil else {
+                self?.photos = nil
+                self?.collectionView?.reloadData()
+                return
+            }
+            self?.photos = photos
+            self?.collectionView?.reloadData()
+        }
     }
 }
 
 extension ViewController: UICollectionViewDataSource {
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 100
+        return photos!.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -46,9 +51,7 @@ extension ViewController: UICollectionViewDataSource {
 extension ViewController: UICollectionViewDelegateFlowLayout {
     // FIXME: make collection view paging center cell properly
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        let width = 1.0 * collectionView.frame.size.width
-        let height = 1.0 * collectionView.frame.size.height
-        return CGSizeMake(width, height)
+        return collectionView.frame.size
     }
 }
 

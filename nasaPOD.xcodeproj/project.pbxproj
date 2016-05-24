@@ -16,10 +16,9 @@
 		6864A4AF1CF21D08003F4160 /* nasaPODTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6864A4AE1CF21D08003F4160 /* nasaPODTests.swift */; };
 		6864A4BA1CF21D08003F4160 /* nasaPODUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6864A4B91CF21D08003F4160 /* nasaPODUITests.swift */; };
 		6864A4C81CF21D84003F4160 /* API.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6864A4C71CF21D84003F4160 /* API.plist */; };
-		6864A4CF1CF22292003F4160 /* Photo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6864A4CD1CF22292003F4160 /* Photo+CoreDataProperties.swift */; };
-		6864A4D01CF22292003F4160 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6864A4CE1CF22292003F4160 /* Photo.swift */; };
 		6864A4D31CF222E7003F4160 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6864A4D21CF222E7003F4160 /* NetworkService.swift */; };
 		6864A4D51CF22920003F4160 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6864A4D41CF22920003F4160 /* PhotoCollectionViewCell.swift */; };
+		6887E8E31CF4A6990020BDF9 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6887E8E21CF4A6990020BDF9 /* Photo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,10 +54,10 @@
 		6864A4B91CF21D08003F4160 /* nasaPODUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nasaPODUITests.swift; sourceTree = "<group>"; };
 		6864A4BB1CF21D08003F4160 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6864A4C71CF21D84003F4160 /* API.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = API.plist; sourceTree = "<group>"; };
-		6864A4CD1CF22292003F4160 /* Photo+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Photo+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		6864A4CE1CF22292003F4160 /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		6864A4D21CF222E7003F4160 /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		6864A4D41CF22920003F4160 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
+		6887E8E21CF4A6990020BDF9 /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		6887E8E41CF4AE8A0020BDF9 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,8 +157,8 @@
 		6864A4CB1CF21F76003F4160 /* model */ = {
 			isa = PBXGroup;
 			children = (
-				6864A4CD1CF22292003F4160 /* Photo+CoreDataProperties.swift */,
-				6864A4CE1CF22292003F4160 /* Photo.swift */,
+				6887E8E21CF4A6990020BDF9 /* Photo.swift */,
+				6887E8E41CF4AE8A0020BDF9 /* MyPlayground.playground */,
 				6864A49D1CF21D08003F4160 /* nasaPOD.xcdatamodeld */,
 			);
 			path = model;
@@ -315,13 +314,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6887E8E31CF4A6990020BDF9 /* Photo.swift in Sources */,
 				6864A4991CF21D08003F4160 /* ViewController.swift in Sources */,
 				6864A4971CF21D08003F4160 /* AppDelegate.swift in Sources */,
-				6864A4CF1CF22292003F4160 /* Photo+CoreDataProperties.swift in Sources */,
 				6864A49F1CF21D08003F4160 /* nasaPOD.xcdatamodeld in Sources */,
 				6864A4D51CF22920003F4160 /* PhotoCollectionViewCell.swift in Sources */,
 				6864A4D31CF222E7003F4160 /* NetworkService.swift in Sources */,
-				6864A4D01CF22292003F4160 /* Photo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
