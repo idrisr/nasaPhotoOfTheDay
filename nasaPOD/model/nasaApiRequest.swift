@@ -29,7 +29,7 @@ struct YouTubeURL {
 
         do {
             //FIXME: do vimeo too
-            let pattern = "\\/([-A-Z0-9]{11})\\?"
+            let pattern = "\\/([A-Z0-9-_]{11})\\?"
             let re = try NSRegularExpression(pattern: pattern, options: .CaseInsensitive)
             let matches = re.matchesInString(self.URL, options: .ReportProgress, range: NSRange(location: 0, length: self.URL.utf16.count))
 
