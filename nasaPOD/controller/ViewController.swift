@@ -22,6 +22,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var datePicker: UIDatePicker!
 
     var photos: [Photo]?
+    var firstLoad = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +46,10 @@ class ViewController: UIViewController {
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        self.loadDate()
+        if firstLoad == true {
+            self.loadDate()
+            firstLoad = false
+        }
     }
 
     @IBAction func datePickerChanged(sender: UIDatePicker) {
@@ -71,6 +75,17 @@ class ViewController: UIViewController {
         self.datePicker.maximumDate = NSDate()
         self.datePicker.datePickerMode = .Date
     }
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        guard let cell = sender as? PhotoCollectionViewCell else {
+            return
+        }
+
+        let indexPath = self.collectionView.indexPathForCell(cell)
+        let photo = self.photos![indexPath!.row]
+        let destinationVC = segue.destinationViewController as! DetailViewController
+        destinationVC.photo = photo
+    }
 }
 
 extension ViewController: UICollectionViewDataSource {
@@ -87,12 +102,13 @@ extension ViewController: UICollectionViewDataSource {
 
         guard let _ = photo.url else {
             let apiurl = NasaAPIURL(date: photo.date!.toString()).url()
+            cell.dateLabel.text = photo.date!.toString()
+            cell.dateLabel.textColor = UIColor.whiteColor()
             NetworkClient.sharedInstance.getURL(apiurl, completion: { (results, error) in
                 if let dict = results as! NSDictionary? {
                     photo.updateWithDict(dict)
                 }
             })
-            cell.imageView.image = UIImage(named: DefaultImages.downloading.rawValue)
             return cell
         }
 
@@ -114,12 +130,8 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension ViewController: UICollectionViewDelegate { }
-
 extension ViewController: SaveDateDelegate {
     func saveDate() {
-        print(#function)
-
         let defaults = NSUserDefaults.standardUserDefaults()
         if let cell = self.collectionView.visibleCells().first {
             let indexPath = self.collectionView.indexPathForCell(cell)
@@ -130,7 +142,6 @@ extension ViewController: SaveDateDelegate {
     }
 
     func loadDate() {
-        print(#function)
         let defaults = NSUserDefaults.standardUserDefaults()
         if let stringDate = defaults.objectForKey("date") {
             let date = (stringDate as! String).toDate()
@@ -145,7 +156,6 @@ extension ViewController: SaveDateDelegate {
         }
     }
 }
-
 
 extension ViewController: ViewUpdateDelegate {
     func updateView() {

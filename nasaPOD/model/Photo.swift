@@ -29,10 +29,10 @@ enum MediaType: String {
     case video = "video"
 }
 
-enum DefaultImages: String {
-    case broken = "broken"
-    case downloading = "downloading"
-}
+//enum DefaultImages: String {
+//    case broken = "broken"
+//    case downloading = "downloading"
+//}
 
 
 class Photo {
@@ -84,7 +84,7 @@ class Photo {
         if let url = dict["url"] as? String {
             self.url = url
         }
-        
+
     }
 }
 

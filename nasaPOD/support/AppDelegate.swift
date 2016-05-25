@@ -7,16 +7,12 @@
 //
 
 import UIKit
-import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var saveDateDelegate: SaveDateDelegate?
-
-    func applicationDidEnterBackground(application: UIApplication) { }
-    func applicationWillEnterForeground(application: UIApplication) { }
 
     func applicationWillTerminate(application: UIApplication) {
         self.saveDateDelegate?.saveDate()
@@ -26,6 +22,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
-    func applicationDidBecomeActive(application: UIApplication) {
-    }
 }
