@@ -17,7 +17,7 @@ protocol SaveDateDelegate {
     func loadDate()
 }
 
-class ViewController: UIViewController {
+class MasterViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var datePicker: UIDatePicker!
 
@@ -88,7 +88,7 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController: UICollectionViewDataSource {
+extension MasterViewController: UICollectionViewDataSource {
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return photos!.count
     }
@@ -112,6 +112,10 @@ extension ViewController: UICollectionViewDataSource {
             return cell
         }
 
+        if photo.media_type! == MediaType.video {
+            print(photo.url)
+        }
+
         cell.imageView.image = photo.image
         cell.dateLabel.text = photo.date!.toString()
         cell.dateLabel.textColor = UIColor.whiteColor()
@@ -122,7 +126,7 @@ extension ViewController: UICollectionViewDataSource {
     }
 }
 
-extension ViewController: UICollectionViewDelegateFlowLayout {
+extension MasterViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         let width = collectionView.frame.size.width * 1.0
         let height = collectionView.frame.size.height * 1.0
@@ -130,7 +134,7 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension ViewController: SaveDateDelegate {
+extension MasterViewController: SaveDateDelegate {
     func saveDate() {
         let defaults = NSUserDefaults.standardUserDefaults()
         if let cell = self.collectionView.visibleCells().first {
@@ -157,7 +161,7 @@ extension ViewController: SaveDateDelegate {
     }
 }
 
-extension ViewController: ViewUpdateDelegate {
+extension MasterViewController: ViewUpdateDelegate {
     func updateView() {
         self.collectionView.reloadData()
     }
