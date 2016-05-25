@@ -86,6 +86,13 @@ class MasterViewController: UIViewController {
         let destinationVC = segue.destinationViewController as! DetailViewController
         destinationVC.photo = photo
     }
+
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+        let cell = sender as! PhotoCollectionViewCell
+        let indexPath = self.collectionView.indexPathForCell(cell)
+        let photo = self.photos?[indexPath!.row]
+        return photo!.url != nil
+    }
 }
 
 extension MasterViewController: UICollectionViewDataSource {
