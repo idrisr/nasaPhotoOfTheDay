@@ -47,16 +47,24 @@ class Photo {
 
     var url: String? {
         didSet {
+            var imageURL: NSURL?
+
             switch self.media_type! {
                 case .image:
-                    let url = NSURL(string: self.url!)
-                    NetworkClient.sharedInstance.getImage(url!, completion: { (image, error) in
-                        self.image = image
-                        self.viewUpdateDelegate?.updateView()
-                    })
+                    imageURL = NSURL(string: self.url!)
                 case .video:
-                    break
+                    imageURL = YouTubeURL(URL: self.url!).imageURL
             }
+
+            // FIXME: this is not using optionals correctly
+            guard imageURL != nil else {
+                return
+            }
+
+            NetworkClient.sharedInstance.getImage(imageURL!, completion: { (image, error) in
+                self.image = image
+                self.viewUpdateDelegate?.updateView()
+            })
         }
     }
 

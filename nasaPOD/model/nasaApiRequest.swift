@@ -20,6 +20,34 @@ enum queryParameters: String {
     case highdef = "hd"
 }
 
+struct YouTubeURL {
+    let URL: String
+    let imageURL: NSURL?
+
+    init(URL :String ) {
+        self.URL = URL
+
+        do {
+            //FIXME: do vimeo too
+            let pattern = "\\/([-A-Z0-9]{11})\\?"
+            let re = try NSRegularExpression(pattern: pattern, options: .CaseInsensitive)
+            let matches = re.matchesInString(self.URL, options: .ReportProgress, range: NSRange(location: 0, length: self.URL.utf16.count))
+
+            guard matches.count > 0 else {
+                self.imageURL = nil
+                return
+            }
+
+            let match = matches[0]
+            let videoID = (self.URL as NSString).substringWithRange(match.rangeAtIndex(1))
+            let urlString = "https://img.youtube.com/vi/\(videoID)/0.jpg"
+            self.imageURL = NSURL(string: urlString)
+        } catch {
+            self.imageURL = nil
+        }
+    }
+}
+
 
 struct APIEndpointURL {
     let baseURL: NSURL!

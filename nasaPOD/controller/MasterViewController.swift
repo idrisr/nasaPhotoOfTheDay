@@ -57,7 +57,7 @@ class MasterViewController: UIViewController {
         let index = self.photos!.indexOf { (photo) -> Bool in
             return photo.date! == selectedDate
         }
-        
+
         let indexPath = NSIndexPath(forRow: index!, inSection: 0)
         self.collectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: .CenteredHorizontally, animated: true)
     }
@@ -92,7 +92,7 @@ extension MasterViewController: UICollectionViewDataSource {
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return photos!.count
     }
-    
+
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let reuseID = "photoCell"
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseID, forIndexPath: indexPath) as! PhotoCollectionViewCell
@@ -110,10 +110,6 @@ extension MasterViewController: UICollectionViewDataSource {
                 }
             })
             return cell
-        }
-
-        if photo.media_type! == MediaType.video {
-            print(photo.url)
         }
 
         cell.imageView.image = photo.image
