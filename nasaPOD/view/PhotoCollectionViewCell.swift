@@ -13,6 +13,7 @@ class PhotoCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
 
+    @IBOutlet weak var dateLabel: UILabel!
     var imageTask: NSURLSessionDownloadTask?
 
     @IBInspectable var cornerRadius: CGFloat = 0 {
@@ -39,6 +40,11 @@ class PhotoCollectionViewCell: UICollectionViewCell {
             // cancel existing download task for cell because it just got reused
             imageTask?.cancel()
 
+            guard photo?.image == nil else {
+                self.imageView.image = photo?.image
+                return
+            }
+
             guard let date = photo?.date else {
                 self.imageView.image = UIImage(named: DefaultImages.broken.rawValue)
                 return
@@ -47,14 +53,13 @@ class PhotoCollectionViewCell: UICollectionViewCell {
             self.titleLabel.text = self.photo!.date?.toString()
             self.titleLabel.textColor = UIColor.whiteColor()
 
-            // dont have the url yet. make the API call
+            // dont have the image url yet. make the API call
             guard let _ = photo?.url else {
-                let url = NasaAPIURL(date: date.toString()).url()
+                let apiurl = NasaAPIURL(date: date.toString()).url()
 
-                NetworkClient.sharedInstance.getURL(url, completion: { [weak self] (results, error) in
+                NetworkClient.sharedInstance.getURL(apiurl, completion: { [weak self] (results, error) in
                     if let dict = results as! NSDictionary? {
                         self!.photo?.updateWithDict(dict)
-
                         let imageURL = NSURL(string: self!.photo!.url!)!
                         self?.imageTask = self?.getImage(imageURL)
                     }
@@ -63,7 +68,7 @@ class PhotoCollectionViewCell: UICollectionViewCell {
             }
 
             // dont have the image yet. download the image
-            guard let cellImage = photo?.image else {
+            guard let _ = photo?.image else {
                 switch photo!.media_type! {
                     case .image:
                         imageTask = self.getImage(NSURL(string: self.photo!.url!)!)
@@ -72,8 +77,6 @@ class PhotoCollectionViewCell: UICollectionViewCell {
                 }
                 return
             }
-
-            imageView.image = cellImage
         }
     }
 
@@ -92,7 +95,7 @@ class PhotoCollectionViewCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         photo = nil
-        imageView.image = nil
-        titleLabel.text = ""
+//        imageView.image = nil
+//        titleLabel.text = nil
     }
 }

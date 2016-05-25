@@ -17,7 +17,6 @@ enum NetworkClientError: ErrorType {
 
 class NetworkClient: NSObject {
     private var urlSession: NSURLSession
-    private var backgroundSession: NSURLSession!
     private var completionHandlers = [NSURL: ImageResult]()
     static let sharedInstance = NetworkClient()
 
@@ -26,8 +25,6 @@ class NetworkClient: NSObject {
         urlSession = NSURLSession(configuration: configuration)
 
         super.init()
-        let backgroundConfiguration = NSURLSessionConfiguration.backgroundSessionConfigurationWithIdentifier("com.idrisr.nasaPOD")
-        backgroundSession = NSURLSession(configuration: backgroundConfiguration, delegate: self, delegateQueue: nil)
     }
 
     func getURL(url: NSURL, completion: NetworkResult) {
@@ -122,11 +119,4 @@ extension NetworkClient: NSURLSessionDelegate, NSURLSessionDownloadDelegate {
             }
         }
     }
-
-    //    func URLSessionDidFinishEventsForBackgroundURLSession(session: NSURLSession) {
-    //        if let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate, completionHandler = appDelegate.backgroundSessionCompletionHandler {
-    //            appDelegate.backgroundSessionCompletionHandler = nil
-    //            completionHandler()
-    //        }
-    //    }
 }

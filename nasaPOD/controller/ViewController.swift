@@ -28,6 +28,34 @@ class ViewController: UIViewController {
             self?.photos = photos
             self?.collectionView?.reloadData()
         }
+
+        self.configureDatePicker()
+    }
+
+
+    @IBAction func datePickerChanged(sender: UIDatePicker) {
+        let selectedDate = sender.date
+        let index = self.photos!.indexOf { (photo) -> Bool in
+            return photo.date! == selectedDate
+        }
+        
+        let indexPath = NSIndexPath(forRow: index!, inSection: 0)
+        self.collectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: .CenteredHorizontally, animated: true)
+    }
+
+
+    private func configureDatePicker() {
+        // FIXME: dont load plist multiple times
+        let path = NSBundle.mainBundle().pathForResource("nasaAPI", ofType: "plist")!
+        let dict = NSDictionary(contentsOfFile: path)!
+        let formatter = NSDateFormatter()
+        let minimumDateString = dict["minimumDate"] as! String
+        formatter.dateFormat = "yyyyMMdd"
+        let minimumDate = formatter.dateFromString(minimumDateString)
+
+        self.datePicker.minimumDate = minimumDate
+        self.datePicker.maximumDate = NSDate()
+        self.datePicker.datePickerMode = .Date
     }
 }
 
@@ -41,13 +69,13 @@ extension ViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseID, forIndexPath: indexPath) as! PhotoCollectionViewCell
 
         let photo = photos![indexPath.row]
+        print("\(photo.date)")
         cell.photo = photo
         return cell
     }
 }
 
 extension ViewController: UICollectionViewDelegateFlowLayout {
-    // FIXME: make collection view paging center cell properly
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         let width = collectionView.frame.size.width * 0.9
         let height = collectionView.frame.size.height * 0.9

@@ -64,22 +64,22 @@ typealias PhotosResult = ([Photo]?, ErrorType?) -> Void
 
 extension Photo {
     static func allPhotos(completion: PhotosResult) {
-        let startDate = NSDateComponents()
+        // FIXME: dont load the min date from the plist more than once
+        let path = NSBundle.mainBundle().pathForResource("nasaAPI", ofType: "plist")!
+        let dict = NSDictionary(contentsOfFile: path)!
+        let formatter = NSDateFormatter()
+        let minimumDateString = dict["minimumDate"] as! String
+        formatter.dateFormat = "yyyyMMdd"
 
-        // FIXME: get start date from plist
-        startDate.year = 2016
-        startDate.month = 1
-        startDate.day = 1
+        var nd = formatter.dateFromString(minimumDateString)!
         let calendar = NSCalendar.currentCalendar()
-        let startDateNSDate = calendar.dateFromComponents(startDate)!
 
         let offsetComponents: NSDateComponents = NSDateComponents()
         offsetComponents.day = 1
-        var nd:NSDate = startDateNSDate
 
         var photos = [Photo]()
 
-        while nd.timeIntervalSince1970 < NSDate().timeIntervalSince1970 {
+        while nd.timeIntervalSince1970 <= NSDate().timeIntervalSince1970 {
             photos.append(Photo(date: nd))
             nd = calendar.dateByAddingComponents(offsetComponents, toDate: nd, options: .MatchStrictly)!;
         }
