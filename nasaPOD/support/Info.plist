@@ -16,6 +16,16 @@
           <true/>
           <!--Include to specify minimum TLS version-->
         </dict>
+        <key>youtube.com</key>
+        <dict>
+          <!--Include to allow subdomains-->
+          <key>NSIncludesSubdomains</key>
+          <true/>
+          <!--Include to allow HTTP requests-->
+          <key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
+          <true/>
+          <!--Include to specify minimum TLS version-->
+        </dict>
       </dict>
     </dict>
     <key>CFBundleDevelopmentRegion</key>
