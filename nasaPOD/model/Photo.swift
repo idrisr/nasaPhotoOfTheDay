@@ -29,12 +29,6 @@ enum MediaType: String {
     case video = "video"
 }
 
-//enum DefaultImages: String {
-//    case broken = "broken"
-//    case downloading = "downloading"
-//}
-
-
 class Photo {
     var explanation: String?
     var date: NSDate?
@@ -56,7 +50,7 @@ class Photo {
                     imageURL = YouTubeURL(URL: self.url!).imageURL
             }
 
-            // FIXME: this is not using optionals correctly
+            // FIXME: I imagine there is a better way to use optionals
             guard imageURL != nil else {
                 return
             }
