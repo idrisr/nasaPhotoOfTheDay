@@ -28,6 +28,8 @@ class MasterViewController: UIViewController {
         super.viewDidLoad()
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
+        self.title = "NASA Photo of the Day"
+
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.saveDateDelegate = self
 
