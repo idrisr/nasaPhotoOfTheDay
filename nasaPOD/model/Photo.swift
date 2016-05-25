@@ -16,6 +16,14 @@ extension NSDate {
     }
 }
 
+extension String {
+    func toDate() -> NSDate {
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter.dateFromString(self)!
+    }
+}
+
 enum MediaType: String {
     case image = "image"
     case video = "video"
@@ -34,8 +42,23 @@ class Photo {
     var media_type: MediaType?
     var service_version: String?
     var title: String?
-    var url: String?
     var image: UIImage?
+    var viewUpdateDelegate: ViewUpdateDelegate?
+
+    var url: String? {
+        didSet {
+            switch self.media_type! {
+                case .image:
+                    let url = NSURL(string: self.url!)
+                    NetworkClient.sharedInstance.getImage(url!, completion: { (image, error) in
+                        self.image = image
+                        self.viewUpdateDelegate?.updateView()
+                    })
+                case .video:
+                    break
+            }
+        }
+    }
 
     init(date: NSDate) {
         self.date = date
@@ -46,17 +69,22 @@ class Photo {
             self.explanation = explanation
         }
 
-        if let url = dict["url"] as? String {
-            self.url = url
-        }
-
         if let hdurl = dict["hdurl"] as? String{
             self.hdurl = hdurl
         }
 
         if let media_type = dict["media_type"] as? String{
             self.media_type = MediaType(rawValue: media_type)
-       }
+        }
+
+        if let title = dict["title"] as? String{
+            self.title = title
+        }
+
+        if let url = dict["url"] as? String {
+            self.url = url
+        }
+        
     }
 }
 

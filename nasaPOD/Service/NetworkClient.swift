@@ -64,7 +64,7 @@ class NetworkClient: NSObject {
         }
     }
 
-    func getImage(url: NSURL, completion: ImageResult) -> NSURLSessionDownloadTask {
+    func getImage(url: NSURL, completion: ImageResult) {
         let request = NSURLRequest(URL: url)
         let task = urlSession.downloadTaskWithRequest(request) { (fileUrl, response, error) in
             guard let fileUrl = fileUrl else {
@@ -85,7 +85,6 @@ class NetworkClient: NSObject {
             }
         }
         task.resume()
-        return task
     }
 }
 
