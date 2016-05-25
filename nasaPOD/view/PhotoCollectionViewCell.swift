@@ -32,4 +32,11 @@ class PhotoCollectionViewCell: UICollectionViewCell {
             layer.borderColor = borderColor?.CGColor
         }
     }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.imageView.image = nil
+        self.titleLabel.text = nil
+        self.dateLabel.text = nil
+    }
 }
