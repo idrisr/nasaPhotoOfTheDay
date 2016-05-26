@@ -146,20 +146,26 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cvg-Ka-WqM">
+                            <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cvg-Ka-WqM">
                                 <rect key="frame" x="0.0" y="64" width="600" height="408"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
                             </webView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Tg6-sP-1Ml">
+                                <rect key="frame" x="282" y="249" width="37" height="37"/>
+                                <color key="color" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="FeG-Hh-M0B" secondAttribute="trailing" id="6Q0-yH-zNf"/>
+                            <constraint firstItem="Tg6-sP-1Ml" firstAttribute="centerY" secondItem="Cvg-Ka-WqM" secondAttribute="centerY" id="EfS-Wz-061"/>
                             <constraint firstItem="Cvg-Ka-WqM" firstAttribute="top" secondItem="FF8-b3-vwg" secondAttribute="bottom" id="FUs-e7-rAY"/>
                             <constraint firstItem="5Sk-bC-5ZA" firstAttribute="top" secondItem="Cvg-Ka-WqM" secondAttribute="bottom" id="Fdu-D0-Zqa"/>
                             <constraint firstItem="5Vh-WB-6mr" firstAttribute="top" secondItem="5Sk-bC-5ZA" secondAttribute="bottom" id="X4A-6L-osu"/>
                             <constraint firstItem="FeG-Hh-M0B" firstAttribute="leading" secondItem="tzm-K2-QJr" secondAttribute="leading" id="Xzh-s5-rTW"/>
                             <constraint firstItem="Cvg-Ka-WqM" firstAttribute="leading" secondItem="tzm-K2-QJr" secondAttribute="leading" id="YuO-Rp-gWV"/>
                             <constraint firstItem="5Sk-bC-5ZA" firstAttribute="leading" secondItem="FeG-Hh-M0B" secondAttribute="leading" id="gcr-zh-sT9"/>
+                            <constraint firstItem="Tg6-sP-1Ml" firstAttribute="centerX" secondItem="Cvg-Ka-WqM" secondAttribute="centerX" id="rYm-WQ-BmO"/>
                             <constraint firstItem="5Sk-bC-5ZA" firstAttribute="width" secondItem="FeG-Hh-M0B" secondAttribute="width" id="tSz-LW-Kyd"/>
                             <constraint firstAttribute="trailing" secondItem="Cvg-Ka-WqM" secondAttribute="trailing" id="xrL-gL-dU7"/>
                             <constraint firstItem="5Sk-bC-5ZA" firstAttribute="top" secondItem="FeG-Hh-M0B" secondAttribute="bottom" id="yj1-Pk-UkM"/>
@@ -168,6 +174,7 @@
                     </view>
                     <connections>
                         <outlet property="imageView" destination="FeG-Hh-M0B" id="JyX-zB-ted"/>
+                        <outlet property="spinner" destination="Tg6-sP-1Ml" id="K5h-Jn-LPk"/>
                         <outlet property="textView" destination="5Sk-bC-5ZA" id="ZPJ-BR-cg7"/>
                         <outlet property="webView" destination="Cvg-Ka-WqM" id="NV3-S9-9ax"/>
                     </connections>
