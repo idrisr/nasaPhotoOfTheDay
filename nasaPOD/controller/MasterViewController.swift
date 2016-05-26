@@ -106,8 +106,15 @@ extension MasterViewController: UICollectionViewDataSource {
         let reuseID = "photoCell"
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseID, forIndexPath: indexPath) as! PhotoCollectionViewCell
 
+
         let photo = photos![indexPath.row]
         photo.viewUpdateDelegate = self
+
+        if let _ = photo.image {
+            cell.spinner.stopAnimating()
+        } else {
+            cell.spinner.startAnimating()
+        }
 
         guard let _ = photo.url else {
             let apiurl = NasaAPIURL(date: photo.date!.toString()).url()

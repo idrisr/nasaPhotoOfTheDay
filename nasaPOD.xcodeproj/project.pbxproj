@@ -64,7 +64,6 @@
 		689A7B601CF4CCB500DC8301 /* nasaAPI.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = nasaAPI.plist; sourceTree = "<group>"; };
 		689A7B621CF5EF6C00DC8301 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		689A7B641CF5FF8100DC8301 /* VideoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewCell.swift; sourceTree = "<group>"; };
-		689A7B661CF6612400DC8301 /* VideoDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,7 +157,6 @@
 		6864A4CA1CF21F74003F4160 /* controller */ = {
 			isa = PBXGroup;
 			children = (
-				689A7B661CF6612400DC8301 /* VideoDetailViewController.swift */,
 				6864A4981CF21D08003F4160 /* MasterViewController.swift */,
 			);
 			path = controller;

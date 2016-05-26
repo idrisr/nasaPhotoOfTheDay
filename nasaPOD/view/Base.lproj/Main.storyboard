@@ -60,6 +60,9 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="2iD-px-sL8">
+                                                    <rect key="frame" x="183" y="113" width="37" height="37"/>
+                                                </activityIndicatorView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
@@ -68,6 +71,8 @@
                                             <constraint firstAttribute="trailing" secondItem="E1h-eQ-vtR" secondAttribute="trailing" id="A8J-tx-uss"/>
                                             <constraint firstItem="E1h-eQ-vtR" firstAttribute="leading" secondItem="Dkh-Yh-0Qj" secondAttribute="leading" id="FaD-Gx-hhG"/>
                                             <constraint firstItem="LtY-i4-o7r" firstAttribute="centerX" secondItem="hUU-qV-F8q" secondAttribute="centerX" id="ODN-L0-ycb"/>
+                                            <constraint firstItem="2iD-px-sL8" firstAttribute="centerY" secondItem="Dkh-Yh-0Qj" secondAttribute="centerY" id="QpW-TC-KSr"/>
+                                            <constraint firstItem="2iD-px-sL8" firstAttribute="centerX" secondItem="Dkh-Yh-0Qj" secondAttribute="centerX" id="UNi-cC-YW2"/>
                                             <constraint firstItem="LtY-i4-o7r" firstAttribute="top" secondItem="hUU-qV-F8q" secondAttribute="bottom" constant="6" id="Wz0-B5-Byt"/>
                                             <constraint firstItem="E1h-eQ-vtR" firstAttribute="top" secondItem="Dkh-Yh-0Qj" secondAttribute="top" id="oq4-z9-ILf"/>
                                             <constraint firstItem="hUU-qV-F8q" firstAttribute="centerX" secondItem="Dkh-Yh-0Qj" secondAttribute="centerX" id="tSk-uS-Wsp"/>
@@ -87,6 +92,7 @@
                                         <connections>
                                             <outlet property="dateLabel" destination="LtY-i4-o7r" id="TNr-FX-o1a"/>
                                             <outlet property="imageView" destination="E1h-eQ-vtR" id="aN8-ps-uoT"/>
+                                            <outlet property="spinner" destination="2iD-px-sL8" id="wvw-7b-dxO"/>
                                             <outlet property="titleLabel" destination="hUU-qV-F8q" id="fpR-NS-kGO"/>
                                             <segue destination="JYk-iZ-vsk" kind="show" identifier="detailSegue" id="2KW-8p-OIT"/>
                                         </connections>
