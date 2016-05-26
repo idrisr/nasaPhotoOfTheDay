@@ -118,7 +118,7 @@ extension MasterViewController: UICollectionViewDataSource {
 
         guard let _ = photo.url else {
             let apiurl = NasaAPIURL(date: photo.date!.toString()).url()
-            cell.dateLabel.text = photo.date!.toString()
+            cell.dateLabel.text = photo.date!.toHumanString()
             cell.dateLabel.textColor = UIColor.whiteColor()
             NetworkClient.sharedInstance.getURL(apiurl, completion: { (results, error) in
                 if let dict = results as! NSDictionary? {
@@ -129,7 +129,7 @@ extension MasterViewController: UICollectionViewDataSource {
         }
 
         cell.imageView.image = photo.image
-        cell.dateLabel.text = photo.date!.toString()
+        cell.dateLabel.text = photo.date!.toHumanString()
         cell.dateLabel.textColor = UIColor.whiteColor()
         cell.titleLabel.text = photo.title!
         cell.titleLabel.textColor = UIColor.whiteColor()

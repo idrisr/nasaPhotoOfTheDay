@@ -14,6 +14,12 @@ extension NSDate {
         formatter.dateFormat = "yyyy-MM-dd"
         return formatter.stringFromDate(self)
     }
+
+    func toHumanString() -> String {
+        let formatter = NSDateFormatter()
+        formatter.dateStyle = .LongStyle
+        return formatter.stringFromDate(self)
+    }
 }
 
 extension String {
