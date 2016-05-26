@@ -90,9 +90,13 @@ class Photo {
         }
 
         if let url = dict["url"] as? String {
-            self.url = url
+            // fixes issue where http sometimes missing from youtube url. Like reponse for date: 2014-05-21
+            if !url.hasPrefix("http:"){
+                self.url = "http:" + url
+            } else {
+                self.url = url
+            }
         }
-
     }
 }
 
