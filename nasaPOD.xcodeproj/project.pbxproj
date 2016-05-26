@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		6864A4971CF21D08003F4160 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6864A4961CF21D08003F4160 /* AppDelegate.swift */; };
 		6864A4991CF21D08003F4160 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6864A4981CF21D08003F4160 /* MasterViewController.swift */; };
-		6864A49C1CF21D08003F4160 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6864A49A1CF21D08003F4160 /* Main.storyboard */; };
+		6864A49C1CF21D08003F4160 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6864A49A1CF21D08003F4160 /* Main.storyboard */; settings = {ASSET_TAGS = ("\U001b", ); }; };
 		6864A49F1CF21D08003F4160 /* nasaPOD.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6864A49D1CF21D08003F4160 /* nasaPOD.xcdatamodeld */; };
 		6864A4A11CF21D08003F4160 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6864A4A01CF21D08003F4160 /* Assets.xcassets */; };
 		6864A4A41CF21D08003F4160 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6864A4A21CF21D08003F4160 /* LaunchScreen.storyboard */; };
@@ -64,6 +64,7 @@
 		689A7B601CF4CCB500DC8301 /* nasaAPI.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = nasaAPI.plist; sourceTree = "<group>"; };
 		689A7B621CF5EF6C00DC8301 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		689A7B641CF5FF8100DC8301 /* VideoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewCell.swift; sourceTree = "<group>"; };
+		689A7B661CF6612400DC8301 /* VideoDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +158,7 @@
 		6864A4CA1CF21F74003F4160 /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				689A7B661CF6612400DC8301 /* VideoDetailViewController.swift */,
 				6864A4981CF21D08003F4160 /* MasterViewController.swift */,
 			);
 			path = controller;
@@ -254,12 +256,16 @@
 		6864A48B1CF21D08003F4160 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				KnownAssetTags = (
+					"\U001b",
+				);
 				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = id;
 				TargetAttributes = {
 					6864A4921CF21D08003F4160 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 66B8D6X2BX;
 					};
 					6864A4A91CF21D08003F4160 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -492,10 +498,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = nasaPOD/support/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.idrisr.nasaPOD;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -503,10 +513,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = nasaPOD/support/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.idrisr.nasaPOD;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
