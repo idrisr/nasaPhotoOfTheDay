@@ -12,8 +12,8 @@
     <string>https://api.nasa.gov/planetary/apod</string>
     <key>apikey</key>
     <!-- <string>6MD7B3caI6PWsq8AtEtP7GQ03FeXTjVn3IBWCFHX</string> -->
-    <!-- <string>ZBrv2wKXCEGK34TQx21taIwI8nfxAQrdLWLpJ8to</string> -->
-    <string>JQmPdg2qeCYai5ZMLBJ40T5EmbVg1vv7EN3SJ3Ub</string>
+    <string>ZBrv2wKXCEGK34TQx21taIwI8nfxAQrdLWLpJ8to</string>
+    <!-- <string>JQmPdg2qeCYai5ZMLBJ40T5EmbVg1vv7EN3SJ3Ub</string> -->
     <key>minimumDate</key>
     <string>19950616</string>
   </dict>
