@@ -161,14 +161,8 @@ extension MasterViewController: SaveDateDelegate {
         let defaults = NSUserDefaults.standardUserDefaults()
         if let stringDate = defaults.objectForKey("date") {
             let date = (stringDate as! String).toDate()
-            let index = self.photos!.indexOf { (photo) -> Bool in
-                return photo.date! == date
-            }
-
-            if let _ = index {
-                let indexPath = NSIndexPath(forRow: index!, inSection: 0)
-                self.collectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: .CenteredHorizontally, animated: true)
-            }
+            self.datePicker.setDate(date, animated: true)
+            self.datePickerChanged(self.datePicker)
         }
     }
 }
